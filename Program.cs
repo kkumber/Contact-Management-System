@@ -11,7 +11,7 @@ namespace ContactManagementSystem
             ContactCreationMenu creationMenu = new ContactCreationMenu(creationHandler);
             MenuNavigation menuNavigation = new MenuNavigation(creationMenu);
             Menu menu = new Menu(menuNavigation);
-
+            JsonHandler jsonHandler = new JsonHandler(manager);
 
             bool running = true;
 

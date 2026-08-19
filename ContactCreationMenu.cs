@@ -5,11 +5,11 @@ namespace ContactManagementSystem
     class ContactCreationMenu
     {
 
-        ContactCreationHandler handler;
+        ContactCreationHandler Handler { get; }
 
         public ContactCreationMenu(ContactCreationHandler handler)
         {
-            this.handler = handler;
+            Handler = handler;
         }
 
         public void DisplayContactCreationMenu()
@@ -44,7 +44,7 @@ namespace ContactManagementSystem
             Console.WriteLine("Contact Number: ");
             string contactNumber = Console.ReadLine();
 
-            handler.CreateContact(nickname, firstName, lastName, contactNumber);
+            Handler.CreateContact(nickname, firstName, lastName, contactNumber);
             return;
         }
 

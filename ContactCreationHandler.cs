@@ -4,11 +4,11 @@ namespace ContactManagementSystem
 {
     class ContactCreationHandler
     {
-        public ContactManagement manager;
+        public ContactManagement Manager { get; }
 
         public ContactCreationHandler(ContactManagement manager) 
         {
-            this.manager = manager;
+            Manager = manager;
         }
 
 
@@ -16,12 +16,11 @@ namespace ContactManagementSystem
         {
             Person person = new Person(nickname, firstName, lastName, contactNumber);
 
-            manager.AddContact(person);
-            manager.PrintContacts();
+            Manager.AddContact(person);
+            Manager.PrintContacts();
             Thread.Sleep(5000);
             return person;
         }
-
         
     }
 }

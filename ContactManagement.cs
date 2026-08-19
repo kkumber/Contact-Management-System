@@ -5,21 +5,21 @@ namespace ContactManagementSystem
 { 
     class ContactManagement
     {
-        public List<Person> contacts;
+        public List<Person> Contacts { get; }
 
         public ContactManagement()
         {
-            contacts = new List<Person>();
+            Contacts = new List<Person>();
         }
         
         public void AddContact(Person contact)
         {
-            contacts.Add(contact);
+            Contacts.Add(contact);
         }
 
         public void PrintContacts()
         {
-            foreach (Person person in contacts) 
+            foreach (Person person in Contacts) 
             {
                 Console.WriteLine(person.ToString());
             }

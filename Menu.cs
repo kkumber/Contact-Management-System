@@ -4,11 +4,11 @@ namespace ContactManagementSystem
 {
     class Menu
     {
-        MenuNavigation menuNavigation;
+        MenuNavigation MenuNavigation;
 
         public Menu(MenuNavigation menuNavigation)
         {
-            this.menuNavigation = menuNavigation;
+            MenuNavigation  = menuNavigation;
         }
 
 
@@ -34,7 +34,7 @@ namespace ContactManagementSystem
                 isValidChoice = AnswerValidation.IsValidMainMenuNavigationAnswer(answer);
             }
 
-            this.menuNavigation.NavigateBasedOnChoice(answer);
+            MenuNavigation.NavigateBasedOnChoice(answer);
         }
     }
 }
