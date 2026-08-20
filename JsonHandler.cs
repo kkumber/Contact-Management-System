@@ -23,5 +23,11 @@ namespace ContactManagementSystem
          
         }
 
+        public void SaveContacts(List<Person> contacts)
+        {
+            string json = JsonSerializer.Serialize(contacts, JsonConfig.Options);
+            File.WriteAllText(JsonFilePath, json);
+        }
+
     }
 }
