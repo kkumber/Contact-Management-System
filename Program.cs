@@ -6,14 +6,22 @@ namespace ContactManagementSystem
     {
         static void Main(string[] args)
         {
-            ContactManagement manager = new ContactManagement();
+            // Load contacts from JSON file
+            JsonHandler jsonHandler = new JsonHandler();
+            List<Person> contacts = jsonHandler.GetContacts();
+
+            // Initialize the contact management system
+            ContactManagement manager = new ContactManagement(contacts);
+
+
             ContactCreationHandler creationHandler = new ContactCreationHandler(manager);
             ContactCreationMenu creationMenu = new ContactCreationMenu(creationHandler);
             MenuNavigation menuNavigation = new MenuNavigation(creationMenu);
             Menu menu = new Menu(menuNavigation);
-            JsonHandler jsonHandler = new JsonHandler(manager);
+            
 
             bool running = true;
+
 
             while (running)
             {

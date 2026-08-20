@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json;
 
 namespace ContactManagementSystem
 { 
     class ContactManagement
     {
         public List<Person> Contacts { get; }
-
-        public ContactManagement()
+        
+        public ContactManagement(List<Person> contacts)
         {
-            Contacts = new List<Person>();
+            Contacts = contacts ?? new List<Person>();
         }
         
         public void AddContact(Person contact)

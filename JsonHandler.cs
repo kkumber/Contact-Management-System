@@ -1,27 +1,27 @@
 ﻿using System;
+using System.Text.Json;
+using System.IO;
 
 namespace ContactManagementSystem
 {
     class JsonHandler
     {
-        public ContactManagement Manager { get; }
-        public bool WriteIndentedOption = true;
+        public readonly string JsonFilePath = "contacts.json";
 
-        public JsonHandler(ContactManagement contacts) 
-        { 
-            Manager = contacts;
-        }
-
-        // save 1 contact to json on create
-        public void SaveContactToJson(Person contact)
+        public List<Person> GetContacts() 
         {
-           
-        }   
-
-
-        // save all contacts in manager to json on exit
-        // save an edited contact or deleted
-        // initialize manager with contacts from json on start
+            if (!File.Exists(JsonFilePath))
+            {
+                File.WriteAllText(JsonFilePath, "[]");
+                return new List<Person>();
+            }
+            else
+            {
+                string existingJson = File.ReadAllText(JsonFilePath);
+                return JsonSerializer.Deserialize<List<Person>>(existingJson) ?? new List<Person>();
+            }
+         
+        }
 
     }
 }
