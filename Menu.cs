@@ -28,7 +28,7 @@ namespace ContactManagementSystem
 
             while (!isValidChoice)
             {
-                Console.WriteLine("\nPlease enter your choice: ");
+                Console.Write("\nPress a number (1-6): ");
                 ConsoleKeyInfo key = Console.ReadKey();
                 answer = key.KeyChar;
                 isValidChoice = AnswerValidation.IsValidMainMenuNavigationAnswer(answer);

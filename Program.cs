@@ -11,12 +11,15 @@ namespace ContactManagementSystem
             List<Person> contacts = jsonHandler.GetContacts();
 
             // Initialize the contact management system
-            ContactManagement manager = new ContactManagement(contacts);
+            ContactManagement manager = new ContactManagement(contacts, jsonHandler);
 
 
             ContactCreationHandler creationHandler = new ContactCreationHandler(manager);
             ContactCreationMenu creationMenu = new ContactCreationMenu(creationHandler);
-            MenuNavigation menuNavigation = new MenuNavigation(creationMenu);
+
+            ViewContactsMenu viewMenu = new ViewContactsMenu(contacts);
+
+            MenuNavigation menuNavigation = new MenuNavigation(creationMenu, viewMenu);
             Menu menu = new Menu(menuNavigation);
             
 

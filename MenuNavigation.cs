@@ -4,11 +4,13 @@ namespace ContactManagementSystem
 {
     class MenuNavigation
     {
-        ContactCreationMenu contactCreationMenu;
+        ContactCreationMenu ContactCreationMenu;
+        ViewContactsMenu ViewContactsMenu;
 
-        public MenuNavigation(ContactCreationMenu contactCreationMenu)
+        public MenuNavigation(ContactCreationMenu contactCreationMenu, ViewContactsMenu viewContactsMenu)
         {
-            this.contactCreationMenu = contactCreationMenu;
+            ContactCreationMenu = contactCreationMenu;
+            ViewContactsMenu = viewContactsMenu;
         }
 
 
@@ -17,12 +19,10 @@ namespace ContactManagementSystem
             switch (answer)
             {
                 case '1':
-                    this.contactCreationMenu.DisplayContactCreationMenu();
-                    // Call the method to add a contact
+                    ContactCreationMenu.DisplayContactCreationMenu();
                     break;
                 case '2': 
-                    Console.WriteLine("\nView Contacts selected.");
-                    // Call the method to view contacts
+                    ViewContactsMenu.DisplayContacts();
                     break;
                 case '3':
                     Console.WriteLine("\nEdit Contact selected.");

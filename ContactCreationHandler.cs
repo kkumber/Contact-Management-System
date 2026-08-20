@@ -17,7 +17,7 @@ namespace ContactManagementSystem
             Person person = new Person(nickname, firstName, lastName, contactNumber);
 
             Manager.AddContact(person);
-            Manager.PrintContacts();
+            Console.WriteLine($"Contact {person.Nickname} created successfully.");
             Thread.Sleep(5000);
             return person;
         }
