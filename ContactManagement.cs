@@ -18,6 +18,15 @@ namespace ContactManagementSystem
         public void AddContact(Person contact)
         {
             Contacts.Add(contact);
+        }
+
+        public void RemoveContact(Person contact)
+        {
+            Contacts.Remove(contact);
+        }
+
+        public void SaveContactsToJson()
+        {
             JsonHandler.SaveContacts(Contacts);
         }
 

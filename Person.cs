@@ -22,5 +22,19 @@ namespace ContactManagementSystem
             return $"Nickname: {Nickname} \nFirst Name: {FirstName} \nLast Name: {LastName} \nContact Number: {ContactNumber}";
         }
 
+        public void UpdatePerson(string newNickname, string newFirstName, string newLastName, string newContactNumber)
+        {
+            Nickname = newNickname;
+            FirstName = newFirstName;
+            LastName = newLastName;
+            ContactNumber = newContactNumber;
+
+            Console.WriteLine("\nContact Updated!");
+            Console.WriteLine($"Nickname: {Nickname}");
+            Console.WriteLine($"First Name: {FirstName}");
+            Console.WriteLine($"Last Name: {LastName}");
+            Console.WriteLine($"Contact Number: {ContactNumber}");
+        }
+
     }
 }

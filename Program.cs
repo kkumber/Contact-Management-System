@@ -17,9 +17,9 @@ namespace ContactManagementSystem
             ContactCreationHandler creationHandler = new ContactCreationHandler(manager);
             ContactCreationMenu creationMenu = new ContactCreationMenu(creationHandler);
 
-            ViewContactsMenu viewMenu = new ViewContactsMenu(contacts);
+            ManageContactsMenu manageContactsMenu = new ManageContactsMenu(contacts, manager);
 
-            MenuNavigation menuNavigation = new MenuNavigation(creationMenu, viewMenu);
+            MenuNavigation menuNavigation = new MenuNavigation(creationMenu, manageContactsMenu);
             Menu menu = new Menu(menuNavigation);
             
 

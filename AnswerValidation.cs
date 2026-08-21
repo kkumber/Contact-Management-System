@@ -13,5 +13,10 @@ namespace ContactManagementSystem
         {
             return answer == '1' || answer == '2';
         }
+
+        public static bool IsValidContactDetailsNavigationAnswer(char answer) 
+        {
+            return answer == '1' || answer == '2' || answer == '0';
+        }
     }
 }

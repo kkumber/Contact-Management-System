@@ -17,18 +17,15 @@ namespace ContactManagementSystem
             Console.Clear();
             Console.WriteLine("Contact Management System");
             Console.WriteLine("1. Add Contact");
-            Console.WriteLine("2. View Contacts");
-            Console.WriteLine("3. Edit Contact");
-            Console.WriteLine("4. Search Contact");
-            Console.WriteLine("5. Delete Contact");
-            Console.WriteLine("6. Exit");
+            Console.WriteLine("2. Manage Contacts");
+            Console.WriteLine("3. Exit");
 
             bool isValidChoice = false;
             char answer = '0';
 
             while (!isValidChoice)
             {
-                Console.Write("\nPress a number (1-6): ");
+                Console.Write("\nPress a number (1-3): ");
                 ConsoleKeyInfo key = Console.ReadKey();
                 answer = key.KeyChar;
                 isValidChoice = AnswerValidation.IsValidMainMenuNavigationAnswer(answer);
