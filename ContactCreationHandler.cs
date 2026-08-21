@@ -17,8 +17,10 @@ namespace ContactManagementSystem
             Person person = new Person(nickname, firstName, lastName, contactNumber);
 
             Manager.AddContact(person);
-            Console.WriteLine($"Contact {person.Nickname} created successfully.");
-            Thread.Sleep(5000);
+            Manager.SaveContactsToJson();
+            Console.WriteLine($"{person.Nickname} created successfully.");
+            Console.WriteLine("\nPress any key to go back...");
+            Console.ReadKey();
             return person;
         }
         

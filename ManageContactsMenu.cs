@@ -26,6 +26,9 @@ namespace ContactManagementSystem
                 {
                     Console.WriteLine("No contacts found.");
                     Console.WriteLine("Please add contacts to view them.");
+                    Console.WriteLine("Press any key to go back...");
+                    Console.ReadKey();
+                    break;
                 }
                 else
                 {
@@ -34,65 +37,57 @@ namespace ContactManagementSystem
                     {
                         Console.WriteLine($"{Contacts.IndexOf(person) + 1}. {person.Nickname}");
                     }
-                }
-                Console.WriteLine("\nEnter the number to view contact details or Enter 0 to return to the main menu... ");
-                Console.Write("\nEnter your choice: ");
-                string answer = Console.ReadLine();
+                    Console.WriteLine("\nEnter the number to view contact details or Enter 0 to return to the main menu... ");
+                    Console.Write("\nEnter your choice: ");
+                    string answer = Console.ReadLine();
 
-                if (answer == "0")
-                {
-                    break;
+                    if (answer == "0")
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        DisplayContactDetails(answer);
+                    }
                 }
-                else
-                {
-                    DisplayContactDetails(answer);
-                }
+     
             }
         }
 
         private void DisplayContactDetails(string index)
-        {
+        {           
+            // pass the index as param. find the index then display it
+            int intIndex = int.Parse(index) - 1; // Convert string to int and adjust for zero-based index
+
+            if ((intIndex + 1) > Contacts.Count)
+            {
+                return;
+            }
+
+
+            Person person = Contacts[intIndex];
+
+
+            Console.Clear();
+            Console.WriteLine("=== Contact Details ===");
+
+            Console.WriteLine($"Nickname: {person.Nickname}");
+            Console.WriteLine($"First Name: {person.FirstName}");
+            Console.WriteLine($"Last Name: {person.LastName}");
+            Console.WriteLine($"Contact Number: {person.ContactNumber}");
+
+            Console.WriteLine("Back [0]   Edit [1]   Delete [2]");
+
+            char answer = Console.ReadKey().KeyChar;
+
+            while (!AnswerValidation.IsValidContactDetailsNavigationAnswer(answer))
+            {
+                Console.WriteLine("\nInvalid. Please try again.");
+                answer = Console.ReadKey().KeyChar;
+            }
+
+            ContactDetailsNavigation(answer, person);
             
-            
-                // pass the index as param. find the index then display it
-                int intIndex = int.Parse(index) - 1; // Convert string to int and adjust for zero-based index
-                Person person = Contacts[intIndex];
-
-
-                Console.Clear();
-                Console.WriteLine("=== Contact Details ===");
-
-                // if it doesnt exist show a message
-
-                if (person == null)
-                {
-                    Console.WriteLine("Invalid Number");
-                    Console.WriteLine("Press any key to return to the contacts list...");
-                    Console.ReadKey();
-                }
-                else
-                {
-                    Console.WriteLine($"Nickname: {person.Nickname}");
-                    Console.WriteLine($"First Name: {person.FirstName}");
-                    Console.WriteLine($"Last Name: {person.LastName}");
-                    Console.WriteLine($"Contact Number: {person.ContactNumber}");
-
-                    Console.WriteLine("Back [0]   Edit [1]   Delete [2]");
-
-                    char answer = Console.ReadKey().KeyChar;
-
-                    while (!AnswerValidation.IsValidContactDetailsNavigationAnswer(answer))
-                    {
-                        Console.WriteLine("\nInvalid. Please try again.");
-                        answer = Console.ReadKey().KeyChar;
-                    }
-
-                    ContactDetailsNavigation(answer, person);
-                }
-
-            
-            
-
         }
 
         private void ContactDetailsNavigation(char answer, Person person)
@@ -103,7 +98,7 @@ namespace ContactManagementSystem
                     DisplayEditContactMenu(person);
                     break;
                 case '2':
-                    Console.WriteLine("Delete contact");
+                    DisplayDeleteContactMenu(person);
                     break;
                 case '0':
                     return;
@@ -123,19 +118,32 @@ namespace ContactManagementSystem
             Console.WriteLine($"Last Name: {person.LastName}");
             Console.WriteLine($"Contact Number: {person.ContactNumber}");
 
+            Console.WriteLine($"\nDo you wish to edit {person.Nickname}'s details?");
+            Console.WriteLine("\n [Y] Yes    [Any Key] No");
+            char continueEdit = char.ToUpper(Console.ReadKey().KeyChar);
 
-            Console.Write("Enter new nickname (press Enter to keep current): ");
-            string nickname = Console.ReadLine() ?? person.Nickname;
+            if (continueEdit != 'Y')
+            {
+                return;
+            }
+
+            Console.Write("\nEnter new nickname (press Enter to keep current): ");
+            string nickname = Console.ReadLine();
             Console.Write("Enter new first name (press Enter to keep current): ");
-            string firstName = Console.ReadLine() ?? person.FirstName;
+            string firstName = Console.ReadLine();
             Console.Write("Enter new last name (press Enter to keep current): ");
-            string lastName = Console.ReadLine() ?? person.LastName;
+            string lastName = Console.ReadLine();
             Console.Write("Enter new contact number (press Enter to keep current): ");
-            string contactNumber = Console.ReadLine() ?? person.ContactNumber;
+            string contactNumber = Console.ReadLine();
 
-            Person newContactDetails = new Person(nickname, firstName, lastName, contactNumber);
+            string newNickname = string.IsNullOrWhiteSpace(nickname) ? person.Nickname : nickname;
+            string newFirstName = string.IsNullOrWhiteSpace(firstName) ? person.FirstName : firstName;
+            string newLastName = string.IsNullOrWhiteSpace(lastName) ? person.LastName : lastName;
+            string newContactNumber = string.IsNullOrWhiteSpace(contactNumber) ? person.ContactNumber : contactNumber;
 
-            person.UpdatePerson(nickname, firstName, lastName, contactNumber);
+            Person newContactDetails = new Person(newNickname, newFirstName, newLastName, newContactNumber);
+
+            person.UpdatePerson(newNickname, newFirstName, newLastName, newContactNumber);
             Manager.RemoveContact(person);
             Manager.AddContact(newContactDetails);
             Manager.SaveContactsToJson();
@@ -153,13 +161,15 @@ namespace ContactManagementSystem
             if (answer == 'Y' || answer == 'y')
             {
                 Manager.RemoveContact(person);
-
+                Manager.SaveContactsToJson();
                 Console.WriteLine("\nContact deleted successfully.");
             }
             else
             {
                 Console.WriteLine("\nDeletion cancelled.");
             }
+            Console.WriteLine("Press any key to go back...");
+            Console.ReadKey();
         }
     }
 }
