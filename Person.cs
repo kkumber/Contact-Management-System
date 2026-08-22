@@ -28,12 +28,6 @@ namespace ContactManagementSystem
             FirstName = newFirstName;
             LastName = newLastName;
             ContactNumber = newContactNumber;
-
-            Console.WriteLine("\nContact Updated!");
-            Console.WriteLine($"Nickname: {Nickname}");
-            Console.WriteLine($"First Name: {FirstName}");
-            Console.WriteLine($"Last Name: {LastName}");
-            Console.WriteLine($"Contact Number: {ContactNumber}");
         }
 
     }
