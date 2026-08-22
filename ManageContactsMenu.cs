@@ -43,6 +43,10 @@ namespace ContactManagementSystem
                     {
                         break;
                     }
+                    else if (answer.ToUpper() == "S")
+                    {
+                        SearchMenu();
+                    }
                     else
                     {
                         DisplayContactDetails(answer);
@@ -50,6 +54,25 @@ namespace ContactManagementSystem
                 }
      
             }
+        }
+
+        private void SearchMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("=== Search ===");
+            Console.Write("Search: ");
+            string input = Console.ReadLine();
+
+            List<Person> results = Manager.Contacts.FindAll(p => p.Nickname.ToLower() == input.ToLower());
+
+            foreach (Person person in results) 
+            {
+                Console.WriteLine($"{Manager.Contacts.IndexOf(person) + 1}. {person.Nickname}");
+            }
+
+            Console.WriteLine("\nEnter the number to view contact details or Enter 0 to return to the main menu... ");
+            Console.Write("\nEnter your choice: ");
+            string answer = Console.ReadLine();
         }
 
         private void DisplayContactDetails(string index)
