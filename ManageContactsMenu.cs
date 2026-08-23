@@ -16,7 +16,8 @@ namespace ContactManagementSystem
 
         public void DisplayContacts()
         {       
-            while (true)
+            bool running = true;
+            while (running)
             {
                 Console.Clear();
                 Console.WriteLine("=== Manage Contacts ===");
@@ -35,22 +36,7 @@ namespace ContactManagementSystem
                     {
                         Console.WriteLine($"{Manager.Contacts.IndexOf(person) + 1}. {person.Nickname}");
                     }
-                    Console.WriteLine("\nEnter the number to view contact details or Enter 0 to return to the main menu... ");
-                    Console.Write("\nEnter your choice: ");
-                    string answer = Console.ReadLine();
-
-                    if (answer == "0")
-                    {
-                        break;
-                    }
-                    else if (answer.ToUpper() == "S")
-                    {
-                        SearchMenu();
-                    }
-                    else
-                    {
-                        DisplayContactDetails(answer);
-                    }
+                    running = DisplayContactMenuNavigationChoices();
                 }
      
             }
@@ -65,14 +51,39 @@ namespace ContactManagementSystem
 
             List<Person> results = Manager.Contacts.FindAll(p => p.Nickname.ToLower() == input.ToLower());
 
+
+            if (results.Count == 0)
+            {
+                Console.WriteLine("\nNo contact with that nickname");
+            }
+
             foreach (Person person in results) 
             {
                 Console.WriteLine($"{Manager.Contacts.IndexOf(person) + 1}. {person.Nickname}");
             }
 
-            Console.WriteLine("\nEnter the number to view contact details or Enter 0 to return to the main menu... ");
+            DisplayContactMenuNavigationChoices();
+        }
+
+        private bool DisplayContactMenuNavigationChoices()
+        {
+            Console.WriteLine("\n[Any Number] Contact Details    [S] Search    [0] Return");
             Console.Write("\nEnter your choice: ");
             string answer = Console.ReadLine();
+
+            if (answer == "0")
+            {
+                return false;
+            }
+            else if (answer.ToUpper() == "S")
+            {
+                SearchMenu();
+            }
+            else
+            {
+                DisplayContactDetails(answer);
+            }
+            return true;
         }
 
         private void DisplayContactDetails(string index)
