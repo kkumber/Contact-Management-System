@@ -20,7 +20,9 @@ namespace ContactManagementSystem
             while (running)
             {
                 Console.Clear();
-                Console.WriteLine("=== Manage Contacts ===");
+                Console.WriteLine(@"==============================================");
+                Console.WriteLine(@"=                CONTACT LIST                =");
+                Console.WriteLine(@"==============================================");
                 if (Manager.Contacts.Count == 0)
                 {
                     Console.WriteLine("No contacts found.");
@@ -45,7 +47,9 @@ namespace ContactManagementSystem
         private void SearchMenu()
         {
             Console.Clear();
-            Console.WriteLine("=== Search ===");
+            Console.WriteLine(@"================================");
+            Console.WriteLine(@"=                 SEARCH                 =");
+            Console.WriteLine(@"================================");
             Console.Write("Search: ");
             string input = Console.ReadLine();
 
@@ -108,7 +112,9 @@ namespace ContactManagementSystem
 
 
             Console.Clear();
-            Console.WriteLine("=== Contact Details ===");
+            Console.WriteLine(@"==============================================");
+            Console.WriteLine(@"=               CONTACT DETAILS             =");
+            Console.WriteLine(@"==============================================");
 
             Console.WriteLine($"Nickname: {person.Nickname}");
             Console.WriteLine($"First Name: {person.FirstName}");
@@ -150,7 +156,9 @@ namespace ContactManagementSystem
         private void DisplayEditContactMenu(Person person)
         {
             Console.Clear();
-            Console.WriteLine("=== Edit Contact ===");
+            Console.WriteLine(@"==============================================");
+            Console.WriteLine(@"=                 EDIT CONTACT              =");
+            Console.WriteLine(@"==============================================");
             // give the list of the current person details and prompt to enter new details or enter to keep current
             Console.WriteLine($"Nickname: {person.Nickname}");
             Console.WriteLine($"First Name: {person.FirstName}");
@@ -202,7 +210,9 @@ namespace ContactManagementSystem
         private void DisplayDeleteContactMenu(Person person)
         {
             Console.Clear();
-            Console.WriteLine("=== Delete Contact ===");
+            Console.WriteLine(@"==============================================");
+            Console.WriteLine(@"=               DELETE CONTACT               =");
+            Console.WriteLine(@"==============================================");
             Console.WriteLine($"Are you sure you want to delete contact: {person.Nickname}? (Y/N)");
             char answer = Console.ReadKey().KeyChar;
             if (answer == 'Y' || answer == 'y')

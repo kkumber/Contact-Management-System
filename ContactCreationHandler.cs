@@ -18,8 +18,8 @@ namespace ContactManagementSystem
 
             Manager.AddContact(person);
             Manager.SaveContactsToJson();
-            Console.WriteLine($"{person.Nickname} created successfully.");
-            Console.WriteLine("\nPress any key to go back...");
+            Console.WriteLine($"\u001b[1;32m{person.Nickname} created successfully.\u001b[0m");
+            Console.WriteLine("\n\u001b[2;37mPress any key to go back...\u001b[0m");
             Console.ReadKey();
             return person;
         }

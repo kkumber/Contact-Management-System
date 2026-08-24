@@ -34,7 +34,7 @@ namespace ContactManagementSystem
         {
             foreach (Person person in Contacts) 
             {
-                Console.WriteLine(person.ToString());
+                Console.WriteLine($"\u001b[1;33m{person}\u001b[0m");
             }
         }
     }
